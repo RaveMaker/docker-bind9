@@ -33,7 +33,7 @@ If you prefer to update the serial manually replace the entrypoint in the `docke
 
 ## Debug
 
-You can change one of the command parameters in `docker-compose.yml` from "-f" to "-g" to get the output to docker instead of the log files.
+You can change one of the command parameters in `docker-compose.yml` from `-f` to `-g` to get the output to docker instead of the log files.
 
 Author: [RaveMaker][RaveMaker].
 
