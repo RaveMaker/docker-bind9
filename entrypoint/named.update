@@ -1,0 +1,23 @@
+#!/bin/bash
+
+serial=$(date +%s)
+log=/var/log/bind/serial
+zones=/var/lib/bind
+domain=example.com
+
+echo "Updating serial on all zones to $serial" >> $log
+
+for db in $zones/db*; do
+    echo "Checking if zone is OK: $db" >> $log
+    named-checkzone $domain $db >> $log
+    if [[ $? != 0 ]]; then
+        echo "Zone $db failed!" >> $log
+        exit 1
+    fi
+    echo "Updating serial in $db" >> $log
+    sed -i "/Serial/ s/[0-9]\{10\}/$serial/" $db
+done
+
+echo "-----" >> $log
+
+exec /usr/sbin/named "$@"

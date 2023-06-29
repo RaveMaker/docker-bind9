@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  bind9-master:
+    profiles:
+      - master
+    image: ubuntu/bind9
+    restart: unless-stopped
+    volumes:
+      - ./cache:/var/cache/bind
+      - ./etc/named-master.conf:/etc/bind/named.conf
+      - ./log:/var/log/bind
+      - ./zones:/var/lib/bind
+      - ./entrypoint:/entrypoint
+    ports:
+    - 53:53/tcp
+    - 53:53/udp
+    - 127.0.0.1:953:953/tcp
+    environment:
+    - BIND9_USER=bind
+    entrypoint: ["/entrypoint/named.update"]
+    command: ["-u","bind","-4","-f"]
+
+  bind9-slave:
+    profiles:
+      - slave
+    image: ubuntu/bind9
+    restart: unless-stopped
+    volumes:
+      - ./cache:/var/cache/bind
+      - ./etc/named-slave.conf:/etc/bind/named.conf
+      - ./log:/var/log/bind
+      - ./zonesdb:/var/lib/bind
+    ports:
+    - 53:53/tcp
+    - 53:53/udp
+    - 127.0.0.1:953:953/tcp
+    environment:
+    - BIND9_USER=bind
+    entrypoint: ["/usr/sbin/named"]
+    command: ["-u","bind","-4","-f"]
