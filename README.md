@@ -29,7 +29,7 @@ edit the following files to suit your needs:
 ## Entrypoint
 
 The entrypoint file `named.update` will update the serial of the zones in the master node.
-If you prefer to update the serial manually You can replace the entrypoint in the `docker-compose.yml` file to be the same as the slaves entrypoint.
+If you prefer to update the serial manually replace the entrypoint in the `docker-compose.yml` file to the same one as the slaves entrypoint.
 
 ## Debug
 
