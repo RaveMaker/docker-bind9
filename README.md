@@ -2,6 +2,12 @@
 
 This is a simple setup of bind9 with master/slave support
 
+docker-compose.yml file supports **two profiles for two seperate docker hosts**:
+
+> docker compose --profile master up -d
+
+> docker compose --profile slave up -d
+
 ## Docker profile - master
 
 edit the following files to suit your needs:
