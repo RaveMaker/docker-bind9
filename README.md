@@ -8,8 +8,9 @@ docker-compose.yml file supports **two profiles for two seperate docker hosts**:
 
 > docker compose --profile slave up -d
 
-The entrypoint file `named.update` will update the serial of the zones in the master node.
+## entrypoint
 
+The entrypoint file `named.update` will update the serial of the zones in the master node.
 If you prefer to update the serial manually You can replace the entrypoint in the `docker-compose.yml` file to be the same as the slaves entrypoint.
 
 ## Docker profile - master
