@@ -34,7 +34,6 @@ services:
     ports:
     - 53:53/tcp
     - 53:53/udp
-    - 127.0.0.1:953:953/tcp
     environment:
     - BIND9_USER=bind
     entrypoint: ["/usr/sbin/named"]
